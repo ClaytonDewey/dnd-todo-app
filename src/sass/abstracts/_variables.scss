@@ -1,0 +1,42 @@
+// Breakpoints
+$bp-small: 48em;
+$bp-medium: 64em;
+$bp-large: 85.375em;
+
+// Media Queries
+$mq-small: 'screen and (min-width: #{$bp-small})';
+$mq-medium: 'screen and (min-width: #{$bp-medium})';
+$mq-large: 'screen and (min-width: #{$bp-large})';
+
+:root {
+  // Light colors
+  --light-5: hsl(235, 19%, 35%);
+  --light-4: hsl(236, 9%, 61%);
+  --light-3: hsl(233, 11%, 84%);
+  --light-2: hsl(236, 33%, 92%);
+  --light-1: hsl(0, 0%, 98%);
+
+  // Dark colors
+  --dark-6: hsl(354, 80%, 10%);
+  --dark-5: hsl(235, 21%, 11%);
+  --dark-4: hsl(235, 24%, 19%);
+  --dark-3: hsl(237, 14%, 26%);
+  --dark-2: hsl(233, 14%, 35%);
+  --dark-1: hsl(234, 39%, 85%);
+
+  --primary-color: hsl(220, 98%, 61%);
+
+  // Gradient
+  --gradient: linear-gradient(-225deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+    no-repeat;
+
+  // Border radius
+  --radius: 4px;
+
+  // Transition timing
+  --transition: 200ms ease-in-out;
+
+  // Font
+  --ff-sans: 'Josefin Sans';
+  --ff-size: 1.8rem;
+}

@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  max-width: 54rem;
+  margin: 4.8rem auto 2rem;
+  padding: 0 2.3rem;
+
+  @media #{$mq-medium} {
+    margin: 8rem auto 2rem;
+  }
+}
