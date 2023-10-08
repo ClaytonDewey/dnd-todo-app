@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTodo } from '../hooks/useTodos';
 import { Input } from '.';
+import toast from 'react-hot-toast';
 
 export const AddTodo = () => {
   const [input, setInput] = useState<string>('');
@@ -18,9 +19,9 @@ export const AddTodo = () => {
     if (input.trim() !== '') {
       addTodo(input);
       setInput('');
-      // toast.success('Todo added successfylly!');
+      toast.success('Todo added successfylly!');
     } else {
-      // toast.error('Todo field cannot be empty!')
+      toast.error('Todo field cannot be empty!');
     }
   };
 

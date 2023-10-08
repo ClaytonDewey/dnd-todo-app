@@ -2,7 +2,7 @@ import { Todo } from '../context/TodoContext';
 // import { TodoItem } from '.';
 import { useTodo } from '../hooks/useTodos';
 import { Button } from '.';
-// import { toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 
 export const TodoList = () => {
@@ -25,9 +25,9 @@ export const TodoList = () => {
     if (ids.length > 0) {
       deleteCompletedTodos(ids);
       setDisplay('all');
-      // toast.success('Completed todos deleted successfully!');
+      toast.success('Completed todos deleted successfully!');
     } else {
-      // toast.error('You have not marked any tasks complete.');
+      toast.error('You have not marked any tasks complete.');
     }
   };
 
