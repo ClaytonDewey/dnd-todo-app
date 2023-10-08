@@ -6,7 +6,7 @@ type HeaderProps = {
 
 export const Header: React.FC<HeaderProps> = ({ children }) => {
   return (
-    <header>
+    <header className='todo__header'>
       <h1>todo</h1>
       {children}
     </header>
