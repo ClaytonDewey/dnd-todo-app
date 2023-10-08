@@ -6,6 +6,7 @@ import { lightTheme, darkTheme } from './theme/themes';
 import useThemeMode from './hooks/useThemeMode';
 import { AddTodo, Footer, Header, TodoList } from './components';
 import './sass/main.scss';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   const { theme, themeToggler } = useThemeMode();
@@ -16,6 +17,7 @@ const App = () => {
       <ThemeProvider theme={themeMode}>
         <GlobalStyle />
         <div className='container'>
+          <Toaster position='top-center' />
           <Header>
             <TogglerButton themeToggler={themeToggler} />
           </Header>
