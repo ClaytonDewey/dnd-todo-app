@@ -1,7 +1,6 @@
 import { Todo } from '../context/TodoContext';
-// import { TodoItem } from '.';
 import { useTodo } from '../hooks/useTodos';
-import { Button } from '.';
+import { Button, TodoItem } from '.';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 
@@ -50,7 +49,7 @@ export const TodoList = () => {
       {display === 'all' && (
         <>
           {todos.map((todo) => (
-            <div key={todo.id}>{todo.text}</div>
+            <TodoItem todo={todo} key={todo.id} />
           ))}
         </>
       )}
@@ -59,7 +58,7 @@ export const TodoList = () => {
           {todos
             .filter((todo) => todo.status === 'undone')
             .map((todo) => {
-              return <div key={todo.id}>{todo.text}</div>;
+              return <TodoItem todo={todo} key={todo.id} />;
             })}
         </>
       )}
@@ -68,7 +67,7 @@ export const TodoList = () => {
           {todos
             .filter((todo) => todo.status === 'completed')
             .map((todo) => {
-              return <div key={todo.id}>{todo.text}</div>;
+              return <TodoItem todo={todo} key={todo.id} />;
             })}
         </>
       )}
