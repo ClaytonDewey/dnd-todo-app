@@ -35,6 +35,19 @@
     width: 2rem;
     border: 1px solid hsl(233, 14%, 35%);
     border-radius: 100%;
+
+    &.done {
+      content: '';
+      color: var(--light-1);
+      height: 2rem;
+      width: 2rem;
+      transition: transform 120ms ease-in-out;
+      background:
+        var(--icon-check) no-repeat 50% center,
+        linear-gradient(-225deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+          no-repeat;
+      border-radius: 100%;
+    }
   }
 
   form {
