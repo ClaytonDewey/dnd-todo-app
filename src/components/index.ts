@@ -1,4 +1,4 @@
-export { AddToDo } from './AddToDo';
+export { AddTodo } from './AddTodo';
 export { Button } from './Button';
 export { Footer } from './Footer';
 export { Header } from './Header';
