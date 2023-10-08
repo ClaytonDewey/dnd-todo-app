@@ -1,3 +1,7 @@
 export const Footer = () => {
-  return <footer>footer</footer>;
+  return (
+    <footer className="footer__main">
+      <p>Drag and drop to reorder list</p>
+    </footer>
+  );
 };
