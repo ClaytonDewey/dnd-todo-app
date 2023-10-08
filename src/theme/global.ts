@@ -1,11 +1,16 @@
 import { createGlobalStyle, withTheme } from 'styled-components';
 import { ThemeProps } from './themes';
+import check from '../images/icon-check.svg';
 
 type GlobalThemeProps = {
   theme: ThemeProps;
 };
 
 const globalStyle = createGlobalStyle`
+  :root {
+    --icon-check: url(${check});
+  }
+
   * {
     margin: 0;
     padding: 0;
