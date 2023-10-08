@@ -4,7 +4,7 @@ import GlobalStyle from './theme/global';
 import ThemeContext from './context/ThemeContext';
 import { lightTheme, darkTheme } from './theme/themes';
 import useThemeMode from './hooks/useThemeMode';
-import { AddToDo, Footer, Header, TodoList } from './components';
+import { AddTodo, Footer, Header, TodoList } from './components';
 import './sass/main.scss';
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
           <Header>
             <TogglerButton themeToggler={themeToggler} />
           </Header>
-          <AddToDo />
+          <AddTodo />
           <TodoList />
           <Footer />
         </div>
