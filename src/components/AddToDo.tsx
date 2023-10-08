@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { useTodo } from "../hooks/useTodos";
-import { Input } from ".";
+import { useEffect, useRef, useState } from 'react';
+import { useTodo } from '../hooks/useTodos';
+import { Input } from '.';
 
-export const AddToDo = () => {
+export const AddTodo = () => {
   const [input, setInput] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { addTodo } = useTodo();
@@ -18,16 +18,17 @@ export const AddToDo = () => {
     if (input.trim() !== '') {
       addTodo(input);
       setInput('');
+      // toast.success('Todo added successfylly!');
     } else {
-      // Error...
+      // toast.error('Todo field cannot be empty!')
     }
-  }
+  };
 
   return (
-    <div className="todo todo__add">
-      <div className="todo__toggle"></div>
+    <div className='todo todo__add'>
+      <div className='todo__toggle'></div>
       <form onSubmit={handleSubmission}>
-        <label htmlFor="todo" className="sr-only">
+        <label htmlFor='todo' className='sr-only'>
           New Todo
         </label>
         <Input
@@ -36,6 +37,7 @@ export const AddToDo = () => {
           id='todo'
           name='todo'
           placeholder='Create a new todo...'
+          value={input}
           onChange={(e) => setInput(e.target.value)}
         />
       </form>
