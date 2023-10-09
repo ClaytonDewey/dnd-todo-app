@@ -1,12 +1,13 @@
-import { Todo } from '../context/TodoContext';
+import type { Todo } from '../context/TodoContext';
 import { useEffect, useRef, useState } from 'react';
 import { useTodo } from '../hooks/useTodos';
 import { Input, Button } from '.';
-import { IconCross } from '../icons';
 import { toast } from 'react-hot-toast';
+import { IconCross } from '../icons';
 
 export const TodoItem = (props: { todo: Todo }) => {
   const { todo } = props;
+
   const [editingTodoText, setEditingTodoText] = useState<string>('');
   const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
 
@@ -14,18 +15,19 @@ export const TodoItem = (props: { todo: Todo }) => {
 
   const editInputRef = useRef<HTMLInputElement>(null);
 
-  const [editMode, setEditMode] = useState(false);
-
   useEffect(() => {
     if (editingTodoId !== null && editInputRef.current) {
-      editInputRef.current.select();
+      editInputRef.current.focus();
     }
   }, [editingTodoId]);
 
   const handleEdit = (todoId: string, todoText: string) => {
-    setEditMode((prev) => !prev);
     setEditingTodoId(todoId);
     setEditingTodoText(todoText);
+
+    if (editInputRef.current) {
+      editInputRef.current.focus();
+    }
   };
 
   const handleUpdate = (todoId: string) => {
@@ -46,67 +48,72 @@ export const TodoItem = (props: { todo: Todo }) => {
 
   const handleStatusUpdate = (todoId: string) => {
     updateTodoStatus(todoId);
+    toast.success('Todo status updated successfully!');
   };
 
-  if (editMode) {
-    return (
-      <div className='todo'>
-        <Button
-          onClick={() => handleStatusUpdate(todo.id)}
-          className={`todo__toggle ${todo.status === 'undone' ? '' : 'done'}`}>
-          {todo.status === 'undone' ? (
-            <span className='sr-only'>mark completed</span>
-          ) : (
-            <span className='sr-only'>mark undone</span>
-          )}
-        </Button>
-        <div>
-          <label htmlFor='todo' className='sr-only'>
-            Edit todo
-          </label>
-          <Input
-            ref={editInputRef}
-            type='text'
-            id='todo'
-            value={editingTodoText}
-            onChange={(e) => setEditingTodoText(e.target.value)}
-            onBlur={() => setEditMode((prev) => !prev)}
-            onKeyDown={(e) => {
-              if (e.key !== 'Enter') return;
-              handleUpdate(todo.id);
-              setEditMode(false);
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className='todo'>
-      <Button
-        onClick={() => handleStatusUpdate(todo.id)}
-        className={`todo__toggle ${todo.status === 'undone' ? '' : 'done'}`}>
-        {todo.status === 'undone' ? (
-          <span className='sr-only'>mark completed</span>
-        ) : (
-          <span className='sr-only'>mark undone</span>
-        )}
-      </Button>
-      <div>
-        <p
-          onClick={() => handleEdit(todo.id, todo.text)}
-          style={{
-            textDecoration:
-              todo.status === 'completed' ? 'line-through' : 'none',
-          }}>
-          {todo.text}
-        </p>
-      </div>
-      <Button onClick={() => handleDelete(todo.id)} className='btn btn-del'>
-        <IconCross />
-        <span className='sr-only'>Delete Todo</span>
-      </Button>
-    </div>
+    <>
+      {editingTodoId === todo.id ? (
+        <>
+          <div className='todo'>
+            <Button
+              onClick={() => handleStatusUpdate(todo.id)}
+              className={`todo__toggle ${
+                todo.status === 'undone' ? '' : 'done'
+              }`}>
+              {todo.status === 'undone' ? (
+                <span className='sr-only'>mark completed</span>
+              ) : (
+                <span className='sr-only'>mark undone</span>
+              )}
+            </Button>
+            <form onSubmit={() => handleUpdate(todo.id)}>
+              <label htmlFor='todo' className='sr-only'>
+                Edit Todo
+              </label>
+              <Input
+                ref={editInputRef}
+                type='text'
+                value={editingTodoText}
+                onChange={(e) => setEditingTodoText(e.target.value)}
+              />
+            </form>
+            <div></div>
+          </div>
+        </>
+      ) : (
+        <div className='todo'>
+          <Button
+            onClick={() => handleStatusUpdate(todo.id)}
+            className={`todo__toggle ${
+              todo.status === 'undone' ? '' : 'done'
+            }`}>
+            {todo.status === 'undone' ? (
+              <span className='sr-only'>mark completed</span>
+            ) : (
+              <span className='sr-only'>mark undone</span>
+            )}
+          </Button>
+          <div>
+            <p
+              onClick={() => handleEdit(todo.id, todo.text)}
+              style={{
+                textDecoration:
+                  todo.status === 'completed' ? 'line-through' : 'none',
+              }}>
+              {todo.text}
+            </p>
+            {/* <button onClick={() => handleEdit(todo.id, todo.text)}>
+              <FaRegEdit />
+              Edit
+            </button> */}
+          </div>
+          <Button onClick={() => handleDelete(todo.id)} className='btn btn-del'>
+            <IconCross />
+            <span className='sr-only'>Delete Todo</span>
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
