@@ -1,7 +1,11 @@
 import darkImg from '../images/bg-desktop-dark.jpg';
 import lightImg from '../images/bg-desktop-light.jpg';
 
+import darkImgSm from '../images/bg-mobile-dark.jpg';
+import lightImgSm from '../images/bg-mobile-light.jpg';
+
 export interface ThemeProps {
+  backgroundImageSm: string;
   backgroundImage: string;
   background: string;
   inputBg: string;
@@ -9,6 +13,7 @@ export interface ThemeProps {
 }
 
 export const darkTheme: ThemeProps = {
+  backgroundImageSm: darkImgSm,
   backgroundImage: darkImg,
   background: 'var(--dark-5)',
   inputBg: 'var(--dark-4)',
@@ -16,6 +21,7 @@ export const darkTheme: ThemeProps = {
 };
 
 export const lightTheme: ThemeProps = {
+  backgroundImageSm: lightImgSm,
   backgroundImage: lightImg,
   background: 'var(--light-1)',
   inputBg: 'var(--light-2)',

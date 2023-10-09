@@ -30,7 +30,7 @@ const globalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({ theme }: GlobalThemeProps) => theme.background};
     background-image: 
-      url(${({ theme }: GlobalThemeProps) => theme.backgroundImage});
+      url(${({ theme }: GlobalThemeProps) => theme.backgroundImageSm});
     font-size: 1.8rem;
     color: ${({ theme }: GlobalThemeProps) => theme.text};
   }
@@ -47,6 +47,13 @@ const globalStyle = createGlobalStyle`
 
   input {
     color: ${({ theme }: GlobalThemeProps) => theme.text}
+  }
+
+  @media screen and (min-width: 64em) {
+    body {
+      background-image: 
+        url(${({ theme }: GlobalThemeProps) => theme.backgroundImage});
+    }
   }
 `;
 
