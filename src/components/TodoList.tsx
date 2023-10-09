@@ -36,8 +36,8 @@ export const TodoList = () => {
         <div className='todo todo__empty'>
           <h2>You have nothing to do!</h2>
           <blockquote>
-            &ldquo;Wherever you are is the entry point.&rdquo; &mdash;{' '}
-            <footer>Kabir</footer>
+            &ldquo;Wherever you are is the entry point.&rdquo;
+            <cite>Kabir</cite>
           </blockquote>
         </div>
       </div>
