@@ -17,7 +17,7 @@ export const TodoItem = (props: { todo: Todo }) => {
 
   useEffect(() => {
     if (editingTodoId !== null && editInputRef.current) {
-      editInputRef.current.focus();
+      editInputRef.current.select();
     }
   }, [editingTodoId]);
 
@@ -26,7 +26,7 @@ export const TodoItem = (props: { todo: Todo }) => {
     setEditingTodoText(todoText);
 
     if (editInputRef.current) {
-      editInputRef.current.focus();
+      editInputRef.current.select();
     }
   };
 
