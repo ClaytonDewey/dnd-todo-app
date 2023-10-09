@@ -67,6 +67,7 @@ export const TodoItem = (props: { todo: Todo }) => {
           <Input
             ref={editInputRef}
             type='text'
+            id='todo'
             value={editingTodoText}
             onChange={(e) => setEditingTodoText(e.target.value)}
             onBlur={() => setEditMode((prev) => !prev)}
