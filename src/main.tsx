@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@fontsource-variable/josefin-sans';
 import App from './App.tsx';
 import { TodoProvider } from './context/TodoContext.tsx';
 
