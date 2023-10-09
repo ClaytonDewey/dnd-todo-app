@@ -16,6 +16,10 @@
     overflow: hidden;
 
     .todo {
+      &__toggle {
+        cursor: pointer;
+      }
+
       &:not(:last-child) {
         border-bottom: 1px solid var(--dark-2);
       }
@@ -72,7 +76,7 @@
     align-items: center;
     text-align: center;
     height: 4.8rem;
-    border-radius: var(--radius);
+    border-radius: 0 0 var(--radius);
     font-size: 1.2rem;
 
     button {
@@ -102,5 +106,17 @@
     margin-left: 2rem;
     display: inline;
     width: auto;
+  }
+
+  &__empty {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    height: auto;
+    justify-content: center;
+
+    h2 {
+      margin-bottom: 3rem;
+    }
   }
 }
