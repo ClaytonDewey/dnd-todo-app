@@ -3,15 +3,16 @@ import { useTodo } from '../hooks/useTodos';
 import { Button, TodoItem } from '.';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
+import { DndContext } from '@dnd-kit/core';
 
 export const TodoList = () => {
   const { todos } = useTodo();
   const [display, setDisplay] = useState<string>('all');
+  const { deleteCompletedTodos } = useTodo();
+
   const activeItemsCount = todos.filter((todo) => {
     return todo.status === 'undone';
   }).length;
-
-  const { deleteCompletedTodos } = useTodo();
 
   const ids = todos.filter((todo) => {
     if (todo.status === 'completed') {
@@ -19,16 +20,6 @@ export const TodoList = () => {
     }
     return null;
   });
-
-  const handleDeleteCompleted = (ids: Todo[]) => {
-    if (ids.length > 0) {
-      deleteCompletedTodos(ids);
-      setDisplay('all');
-      toast.success('Completed todos deleted successfully!');
-    } else {
-      toast.error('You have not marked any tasks complete.');
-    }
-  };
 
   if (!todos.length) {
     return (
@@ -46,31 +37,33 @@ export const TodoList = () => {
 
   return (
     <div className='todo__list'>
-      {display === 'all' && (
-        <>
-          {todos.map((todo) => (
-            <TodoItem todo={todo} key={todo.id} />
-          ))}
-        </>
-      )}
-      {display === 'active' && (
-        <>
-          {todos
-            .filter((todo) => todo.status === 'undone')
-            .map((todo) => {
-              return <TodoItem todo={todo} key={todo.id} />;
-            })}
-        </>
-      )}
-      {display === 'done' && (
-        <>
-          {todos
-            .filter((todo) => todo.status === 'completed')
-            .map((todo) => {
-              return <TodoItem todo={todo} key={todo.id} />;
-            })}
-        </>
-      )}
+      <DndContext>
+        {display === 'all' && (
+          <>
+            {todos.map((todo) => (
+              <TodoItem todo={todo} key={todo.id} />
+            ))}
+          </>
+        )}
+        {display === 'active' && (
+          <>
+            {todos
+              .filter((todo) => todo.status === 'undone')
+              .map((todo) => {
+                return <TodoItem todo={todo} key={todo.id} />;
+              })}
+          </>
+        )}
+        {display === 'done' && (
+          <>
+            {todos
+              .filter((todo) => todo.status === 'completed')
+              .map((todo) => {
+                return <TodoItem todo={todo} key={todo.id} />;
+              })}
+          </>
+        )}
+      </DndContext>
       <footer className='todo todo__footer'>
         <span className='todo__count'>{activeItemsCount} items left</span>
         <div className='todo__toggle-container'>
@@ -98,4 +91,14 @@ export const TodoList = () => {
       </footer>
     </div>
   );
+
+  function handleDeleteCompleted(ids: Todo[]) {
+    if (ids.length > 0) {
+      deleteCompletedTodos(ids);
+      setDisplay('all');
+      toast.success('Completed todos deleted successfully!');
+    } else {
+      toast.error('You have not marked any tasks complete.');
+    }
+  }
 };
