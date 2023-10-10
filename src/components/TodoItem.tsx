@@ -48,7 +48,7 @@ export const TodoItem = (props: { todo: Todo }) => {
 
   const handleStatusUpdate = (todoId: string) => {
     updateTodoStatus(todoId);
-    toast.success('Todo status updated successfully!');
+    // toast.success('Todo status updated successfully!');
   };
 
   return (
@@ -76,6 +76,7 @@ export const TodoItem = (props: { todo: Todo }) => {
                 type='text'
                 value={editingTodoText}
                 onChange={(e) => setEditingTodoText(e.target.value)}
+                onBlur={() => setEditingTodoId(null)}
               />
             </form>
             <div></div>
